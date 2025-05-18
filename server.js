@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const sgMail = require('@sendgrid/mail');
-import testEmailRoute from './server/testEmailRoute.js';
+const testEmailRoute = require('./server/testEmailRoute');
 
 dotenv.config();
 const app = express();
