@@ -2,15 +2,17 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const sgMail = require('@sendgrid/mail');
+const testEmailRoute = require('./server/testEmailRoute');
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.use(cors());
 app.use(express.json());
+app.use('api', testEmailRoute);
 
 app.post('/api/waitlist', async (req, res) => {
   const { name, email } = req.body;
