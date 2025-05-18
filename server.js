@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const sgMail = require('@sendgrid/mail');
-const testEmailRoute = require('./server/testEmailRoute');
+import testEmailRoute from './server/testEmailRoute.js';
 
 dotenv.config();
 const app = express();
@@ -12,6 +12,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.use(cors());
 app.use(express.json());
+app.use('/test-email', testEmailRoute);
 app.use('api', testEmailRoute);
 
 app.post('/api/waitlist', async (req, res) => {
