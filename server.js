@@ -50,6 +50,7 @@ app.post('/api/contact', async (req, res) => {
     await sgMail.send(msg);
     res.status(200).json({ message: 'Contact sent' });
   } catch (err) {
+    console.error('❌ SendGrid error:', err);
     res.status(500).json({ error: 'Send failed' });
   }
 });
